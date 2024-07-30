@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { authActions } from "../store/auth";
+
 const Login = () => {
   const [Data, setData] = useState({ username: "", password: "" });
   const history = useNavigate();
@@ -11,10 +12,12 @@ const Login = () => {
     history("/");
   }
   const dispatch = useDispatch();
+
   const change = (e) => {
     const { name, value } = e.target;
     setData({ ...Data, [name]: value });
   };
+
   const submit = async () => {
     try {
       if (Data.username === "" || Data.password === "") {
@@ -22,8 +25,7 @@ const Login = () => {
       } else {
         const response = await axios.post(
           "http://localhost:1000/api/v1/log-in",
-          Data,
-          console.log(Data)
+          Data
         );
         setData({ username: "", password: "" });
         localStorage.setItem("id", response.data.id);
@@ -35,35 +37,36 @@ const Login = () => {
       alert(error.response.data.message);
     }
   };
+
   return (
-    <div className=" h-[98vh] flex items-center justify-center">
-      <div className="p-4 w-5/6 md:w-4/6 lg:w-2/6 rounded bg-gray-800">
-        <div className="text-2xl font-semibold">LogIn</div>
+    <div className="h-[98vh] flex items-center justify-center">
+      <div className="p-6 w-5/6 md:w-4/6 lg:w-2/6 rounded bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg">
+        <div className="text-3xl font-semibold text-gray-800 mb-4">Log In</div>
         <input
           type="username"
-          placeholder="username"
-          className="bg-gray-700 px-3 py-2 my-3 w-full rounded "
+          placeholder="Username"
+          className="bg-pink-100 px-3 py-2 my-3 w-full rounded border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300"
           name="username"
           value={Data.username}
           onChange={change}
         />
         <input
           type="password"
-          placeholder="password"
-          className="bg-gray-700 px-3 py-2 my-3 w-full rounded "
+          placeholder="Password"
+          className="bg-blue-100 px-3 py-2 my-3 w-full rounded border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
           name="password"
           value={Data.password}
           onChange={change}
         />
         <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between">
           <button
-            className="bg-blue-400  font-semibold text-black px-3 py-2 rounded"
+            className="bg-purple-400 text-white font-semibold px-4 py-2 rounded hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300"
             onClick={submit}
           >
             Login
           </button>
-          <Link to="/signup" className="text-gray-400 hover:text-gray-200">
-            Not having an account? SignUp here
+          <Link to="/signup" className="text-gray-500 hover:text-gray-700 mt-2 lg:mt-0">
+            Don't have an account? Sign Up
           </Link>
         </div>
       </div>

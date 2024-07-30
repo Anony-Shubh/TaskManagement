@@ -86,7 +86,7 @@ const Sidebar = () => {
           <Link
             to={items.link}
             key={i}
-            className="my-2 flex items-center hover:bg-gray-600 p-2 rounded transition-all duration-300"
+            className="my-2 flex items-center hover:bg-purple-300 p-2 rounded transition-all duration-300"
           >
             {items.icon}&nbsp; {items.title}
           </Link>
@@ -94,7 +94,8 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <button className="bg-gray-600 w-full p-2 rounded" onClick={logout}>
+        <button className="bg-purple-400 text-white font-semibold px-4 py-2 rounded hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                onClick={logout}>
           Log Out{" "}
         </button>
       </div>

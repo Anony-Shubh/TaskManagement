@@ -22,10 +22,12 @@ const App = () => {
     ) {
       navigate("/signup");
     }
-  }, []);
+  });
 
   return (
-    <div className="bg-gray-900 text-white md:h-[100%] p-2 relative">
+<div className="bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 md:h-[100%] p-2 relative">
+
+
       <Routes>
         <Route exact path="/" element={<Home />}>
           <Route index element={<AllTasks />} />
