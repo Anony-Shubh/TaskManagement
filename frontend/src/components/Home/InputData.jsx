@@ -26,18 +26,11 @@ const InputData = ({ InputDiv, setInputDiv, UpdatedData, setUpdatedData }) => {
     if (Data.title === "" || Data.desc === "") {
       alert("All fields are required");
     } else {
-      try {
-        const response = await axios.post(
-          "http://localhost:1000/api/v2/create-task",
-          Data,
-          { headers }
-        );
-        console.log("Task created:", response.data);
-        setData({ title: "", desc: "" });
-        setInputDiv("hidden");
-      } catch (error) {
-        console.error("Error creating task:", error);
-      }
+      await axios.post("http://localhost:1000/api/v2/create-task", Data, {
+        headers,
+      });
+      setData({ title: "", desc: "" });
+      setInputDiv("hidden");
     }
   };
 
@@ -45,29 +38,28 @@ const InputData = ({ InputDiv, setInputDiv, UpdatedData, setUpdatedData }) => {
     if (Data.title === "" || Data.desc === "") {
       alert("All fields are required");
     } else {
-      try {
-        const response = await axios.put(
-          `http://localhost:1000/api/v2/update-task/${UpdatedData.id}`,
-          Data,
-          { headers }
-        );
-        console.log("Task updated:", response.data);
-        setUpdatedData({
-          id: "",
-          title: "",
-          desc: "",
-        });
-        setData({ title: "", desc: "" });
-        setInputDiv("hidden");
-      } catch (error) {
-        console.error("Error updating task:", error);
-      }
+      await axios.put(
+        `http://localhost:1000/api/v2/update-task/${UpdatedData.id}`,
+        Data,
+        {
+          headers,
+        }
+      );
+      setUpdatedData({
+        id: "",
+        title: "",
+        desc: "",
+      });
+      setData({ title: "", desc: "" });
+      setInputDiv("hidden");
     }
   };
 
   return (
     <>
-      <div className={`${InputDiv} top-0 left-0 bg-white h-screen w-full`}></div>
+      <div
+        className={`${InputDiv} top-0 left-0 bg-purple-200 opacity-90 h-screen w-full`}
+      ></div>
       <div
         className={`${InputDiv} top-0 left-0 flex items-center justify-center h-screen w-full`}
       >

@@ -22,10 +22,11 @@ const App = () => {
     ) {
       navigate("/signup");
     }
-  });
+  }, []);
 
   return (
 <div className="bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 md:h-[100%] p-2 relative">
+
 
 
       <Routes>
