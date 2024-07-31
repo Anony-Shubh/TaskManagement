@@ -26,7 +26,7 @@ const Signup = () => {
       } else {
         setLoading(true);
         const response = await axios.post(
-          "http://localhost:1000/api/v1/sign-in",
+          "https://taskmanagement-jio0.onrender.com/api/v1/sign-in",
           Data
         );
         setData({ username: "", email: "", password: "" });

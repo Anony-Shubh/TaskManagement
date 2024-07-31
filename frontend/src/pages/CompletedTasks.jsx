@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Cards from "../components/Home/Cards";
 import axios from "axios";
 import Loader from "../components/Home/Loader";
-
 const CompletedTasks = () => {
   const [Data, setData] = useState();
   const headers = {
@@ -13,14 +12,13 @@ const CompletedTasks = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "http://localhost:1000/api/v2/get-complete-tasks",
+        "https://taskmanagement-jio0.onrender.com/api/v2/get-complete-tasks",
         { headers }
       );
       setData(response.data.data);
     };
     fetch();
-  }, []); // Added dependency array to avoid infinite loop
-
+  });
   return (
     <>
       {!Data && (
@@ -35,6 +33,7 @@ const CompletedTasks = () => {
           </h1>
         </div>
       )}
+
       {Data && (
         <div>
           <Cards home={"false"} data={Data} />
